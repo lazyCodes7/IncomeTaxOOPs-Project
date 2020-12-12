@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class TaxPayerIncomeDetails extends TaxPayerDetails{
+public class TaxPayerIncomeDetails{
 	private double Job;
 	private double Buisness;
 	private double Property;
@@ -74,6 +74,7 @@ public class TaxPayerIncomeDetails extends TaxPayerDetails{
 		JButton button2 = new JButton("Edit Credentials");
 		button2.setBounds(280, 420, 150, 25);
 		JButton button3 = new JButton("Go Back");
+		
 		button3.setBounds(450, 420, 200, 25);
 		
 		panel.add(l);

@@ -9,52 +9,42 @@ public class Register {
     {  
     	new RegisterLayout();
     }
-    static class RegisterLayout implements ActionListener{
-    	@Override
-    	public void actionPerformed(ActionEvent e) {
-    		// TODO Auto-generated method stub
-    		Connection connect = null;
-    		if(button3.getText()=="Register") {
-    			String user = username.getText();
-        		String pass1 = password1.getText().toString();
-        		String pass2 = password2.getText().toString();
-        		System.out.println(pass1);
-        		System.out.println(pass2);
-        		if(pass1.contentEquals(pass2)) {
-        			String sql = "INSERT INTO users VALUES(?,?);";
-        			System.out.println("Passwords Match");
-        			try {
-						Class.forName("org.postgresql.Driver");
-					} catch (ClassNotFoundException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-        			try {
-						connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Test", "postgres", "spaces");
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-        			System.out.println("connect done");
-        			try {
-						PreparedStatement st = (PreparedStatement) connect
-						        .prepareStatement(sql);
-						st.setString(1, user);
-						st.setString(2,pass1);
-			            ResultSet rs = st.executeQuery();
-			            if (rs.next()) {
-			            	System.out.println("User " + user + " logged in");
-			            }
-			            
-			            
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-        		}
-        	}
-    		
-    	}
+    static class RegisterLayout{
+    	ActionListener registerButtonListener = new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			if(button3.getText()=="Register") {
+        			String user = username.getText();
+            		String pass1 = password1.getText().toString();
+            		String pass2 = password2.getText().toString();
+            		System.out.println(pass1);
+            		System.out.println(pass2);
+            		if(pass1.contentEquals(pass2)) {
+            			JOptionPane.showMessageDialog(frame, "Successfully Registered");
+            		}
+            	}
+    		}
+    	};
+    	ActionListener taxOfficerListener = new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			if(button2.getText()=="For TaxOfficers") {
+    				JLabel TaxOfficers = new JLabel("Enter Tax Officer ID");
+        			TaxOfficers.setBounds(200,300,200,25);
+        			JTextField TaxOfficersTF = new JTextField(20);
+        			TaxOfficersTF.setBounds(400, 300, 165, 25);
+        			panel.add(TaxOfficers);
+        			panel.add(TaxOfficersTF);
+            	}
+    		}
+    	};
+    	ActionListener loginButtonListener = new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			if(button1.getText()=="Login") {
+    				frame.dispose();
+        			new Login();
+            	}
+    		}
+    	};
+    	
     	JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		
@@ -69,7 +59,7 @@ public class Register {
 		
 		JTextField password1 = new JTextField(20);
 		JTextField password2 = new JTextField(20);
-		JButton button1 = new JButton("Taxpayers");
+		JButton button1 = new JButton("Login");
 		
 		JButton button2 = new JButton("For TaxOfficers");
 		JButton button3 = new JButton("Register");
@@ -85,9 +75,9 @@ public class Register {
 			username.setBounds(300, 120, 165, 25);
 			password1.setBounds(300, 180, 165, 25);
 			password2.setBounds(400, 240, 165, 25);
-			button1.setBounds(100,300,150,25);
-			button2.setBounds(300, 300, 150, 25);
-			button3.setBounds(500, 300, 150, 25);
+			button1.setBounds(100,350,150,25);
+			button2.setBounds(300, 350, 150, 25);
+			button3.setBounds(500, 350, 150, 25);
 			panel.add(l);
 			panel.add(label);
 			panel.add(password);
@@ -100,9 +90,9 @@ public class Register {
 			panel.add(button3);
 			frame.setVisible(true);
 			frame.setSize(700,500);
-			button1.addActionListener(this);
-			button2.addActionListener(this);
-			button3.addActionListener(this);
+			button3.addActionListener(registerButtonListener);
+			button2.addActionListener(taxOfficerListener);
+			button1.addActionListener(loginButtonListener);
 		}
     	
     }
