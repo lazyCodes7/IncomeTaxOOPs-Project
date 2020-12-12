@@ -7,10 +7,10 @@ import javax.swing.*;
 
 public class TaxPayerDetails {
 	private String name;
-	private String PanNo;
-	private String AadharNo;
+	private int PanNo;
+	private int AadharNo;
 	private String Address;
-	private String PhoneNo;
+	private int PhoneNo;
 	public static void main(String args[]) {
 		JFrame frame = new JFrame();
 		frame.setTitle("Income Tax Management Corp");
@@ -75,16 +75,16 @@ public class TaxPayerDetails {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPanNo() {
+	public int getPanNo() {
 		return PanNo;
 	}
-	public void setPanNo(String panNo) {
+	public void setPanNo(int panNo) {
 		PanNo = panNo;
 	}
-	public String getAadharNo() {
+	public int getAadharNo() {
 		return AadharNo;
 	}
-	public void setAadharNo(String aadharNo) {
+	public void setAadharNo(int aadharNo) {
 		AadharNo = aadharNo;
 	}
 	public String getAddress() {
@@ -93,10 +93,10 @@ public class TaxPayerDetails {
 	public void setAddress(String address) {
 		Address = address;
 	}
-	public String getPhoneNo() {
+	public int getPhoneNo() {
 		return PhoneNo;
 	}
-	public void setPhoneNo(String phoneNo) {
+	public void setPhoneNo(int phoneNo) {
 		PhoneNo = phoneNo;
 	}
 }
