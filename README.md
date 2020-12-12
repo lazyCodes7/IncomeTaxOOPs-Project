@@ -1,2 +1,3 @@
 # IncomeTaxOOPs-Project
-Project submission for OOPs and DBMS
+
+Income Tax Record management System
