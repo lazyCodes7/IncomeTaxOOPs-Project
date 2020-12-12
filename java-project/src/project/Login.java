@@ -6,6 +6,7 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Login{
+	
 	static class LoginLayout{
 		ActionListener taxOfficerLogin  = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
@@ -66,7 +67,7 @@ public class Login{
 		}
 	}
 	public static void main(String args[]) {
-		
+		new LoginLayout();
 		
 	}
 
