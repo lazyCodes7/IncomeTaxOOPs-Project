@@ -7,5 +7,7 @@ public class TaxSlabDriver {
 		slab.setInvestments(Double.parseDouble(args[0]));
 		slab.setIncome(Double.parseDouble(args[1]));
 		slab.setUser(args[2]);
+		System.out.println(slab.getIncome());
+		System.out.println(slab.getInvestments());
 	}
 }

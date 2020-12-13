@@ -97,6 +97,7 @@ public class Register {
             		if(pass1.contentEquals(pass2)) {
             			tryConnections(user, pass1);
             			JOptionPane.showMessageDialog(frame, "Successfully Registered");
+            			frame.dispose();
             			TaxPayerDetails newuser = new TaxPayerDetails();
     	    			newuser.main(null);
             		}

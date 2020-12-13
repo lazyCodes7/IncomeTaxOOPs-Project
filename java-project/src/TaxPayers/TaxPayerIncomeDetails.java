@@ -144,9 +144,9 @@ public class TaxPayerIncomeDetails{
 			public void actionPerformed(ActionEvent e) {
             	JOptionPane.showMessageDialog(frame, "Total Income amount is " + TotalIncome);
 				frame.dispose();
-    			String[] income = {Double.toString(TotalIncome),user};
+    			String[] incomes = {Double.toString(TotalIncome),user};
             	TaxPayerInvestmentsDriver driver = new TaxPayerInvestmentsDriver();
-            	driver.main(income);
+            	driver.main(incomes);
 
 	        }
 			

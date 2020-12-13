@@ -49,15 +49,15 @@ public class CalTaxSlab {
 
     			}
     			else if(slab<250000 && slab>500000) {
-        			JOptionPane.showMessageDialog(frame, "You have to pay"+ "10% tax");
+        			JOptionPane.showMessageDialog(frame, "You have to pay "+ "10% tax");
 
     			}
     			else if(slab>500000 && slab<1000000) {
-        			JOptionPane.showMessageDialog(frame, "You have to pay"+ "20% tax");
+        			JOptionPane.showMessageDialog(frame, "You have to pay "+ "20% tax");
 
     			}
     			else if(slab>1000000) {
-        			JOptionPane.showMessageDialog(frame, "You have to pay"+ "30% tax");
+        			JOptionPane.showMessageDialog(frame, "You have to pay "+ "30% tax");
 
     			}
     			JOptionPane.showMessageDialog(frame, "Tax Slab is "+ slab);
@@ -87,8 +87,8 @@ public class CalTaxSlab {
 		String labelText = l.getText();
 		JLabel TotalIncome = new JLabel("Total Income");
 		JLabel TotalInvestment = new JLabel("Investments");
-		JLabel totalIncomeTF = new JLabel(Double.toString(income));
-		JLabel totalInvestmentTF = new JLabel(Double.toString(investments));
+		JLabel totalIncomeTF = new JLabel();
+		JLabel totalInvestmentTF = new JLabel();
 		JButton button1 = new JButton("Check Tax Slab Amount");
 		JButton button2 = new JButton("Go back");
 		JButton button3 = new JButton("Logout");
@@ -104,9 +104,11 @@ public class CalTaxSlab {
 			TotalInvestment.setBounds(200,180,80,25);
 			
 			
-			totalIncomeTF.setBounds(300, 120, 165, 25);
-			totalInvestmentTF.setBounds(300, 180, 165, 25);
-			
+			totalIncomeTF.setBounds(300, 120, 400, 25);
+			totalIncomeTF.setText(Double.toString(getIncome()));
+			totalInvestmentTF.setBounds(300, 180, 400, 25);
+			totalInvestmentTF.setText(Double.toString(getInvestments()));
+
 
 			
 			button1.setBounds(50,350,200,25);
