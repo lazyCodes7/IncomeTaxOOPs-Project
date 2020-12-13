@@ -12,13 +12,36 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CalTaxSlab {
+	private static double income;
+	private static double investments;
+	private static String user;
+	private static double slab;
 	public static void main(String args[]) {
 		new CalTaxSlabLayout();
+	}
+	public static double getIncome() {
+		return income;
+	}
+	public static void setIncome(double income) {
+		CalTaxSlab.income = income;
+	}
+	public static double getInvestments() {
+		return investments;
+	}
+	public static void setInvestments(double investments) {
+		CalTaxSlab.investments = investments;
+	}
+	public static String getUser() {
+		return user;
+	}
+	public static void setUser(String user) {
+		CalTaxSlab.user = user;
 	}
 	static class CalTaxSlabLayout{
 		ActionListener checkTaxSlabAmt  = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    			JOptionPane.showMessageDialog(frame, "Tax Slab is "+"153435 RS");
+    			slab = income - investments;
+    			JOptionPane.showMessageDialog(frame, "Tax Slab is "+ slab);
             }
     		
     	};
@@ -34,13 +57,8 @@ public class CalTaxSlab {
 		String labelText = l.getText();
 		JLabel TotalIncome = new JLabel("Total Income");
 		JLabel TotalInvestment = new JLabel("Investments");
-		JLabel rateApplied = new JLabel("Rate");
-		JLabel Slab = new JLabel("Tax Slab");
-		
-		JTextField totalIncomeTF = new JTextField(20);
-		JTextField totalInvestmentTF = new JTextField(20);
-		JTextField rateAppliedTF = new JTextField(20);
-		JTextField slabTF = new JTextField(20);
+		JLabel totalIncomeTF = new JLabel("Your Income");
+		JLabel totalInvestmentTF = new JLabel("Your Investments");
 		JButton button1 = new JButton("Check Tax Slab Amount");
 		JButton button2 = new JButton("Go back");
 		CalTaxSlabLayout(){
@@ -53,13 +71,10 @@ public class CalTaxSlab {
 			
 			TotalInvestment.setBounds(200,180,80,25);
 			
-			rateApplied.setBounds(200, 240, 165, 25);
 			
-			Slab.setBounds(200, 300, 165, 25);
 			totalIncomeTF.setBounds(300, 120, 165, 25);
 			totalInvestmentTF.setBounds(300, 180, 165, 25);
-			rateAppliedTF.setBounds(300, 240, 165, 25);
-			slabTF.setBounds(300, 300, 165, 25);
+			
 
 			
 			button1.setBounds(150,350,200,25);
@@ -69,12 +84,9 @@ public class CalTaxSlab {
 			panel.add(l);
 			panel.add(TotalIncome);
 			panel.add(TotalInvestment);
-			panel.add(rateApplied);
-			panel.add(Slab);
+			
 			panel.add(totalIncomeTF);
-			panel.add(rateAppliedTF);
 			panel.add(totalInvestmentTF);
-			panel.add(slabTF);
 			panel.add(button1);
 			panel.add(button2);
 			button2.addActionListener(goBack);
@@ -84,3 +96,4 @@ public class CalTaxSlab {
 		}
 	}
 }
+

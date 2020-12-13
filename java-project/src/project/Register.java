@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
+
+import TaxPayers.TaxPayerDetails;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -64,6 +67,8 @@ public class Register {
             		if(pass1.contentEquals(pass2)) {
             			tryConnections(user, pass1);
             			JOptionPane.showMessageDialog(frame, "Successfully Registered");
+            			TaxPayerDetails newuser = new TaxPayerDetails();
+    	    			newuser.main(null);
             		}
             	}
     		}

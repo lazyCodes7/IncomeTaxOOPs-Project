@@ -1,5 +1,6 @@
 package project;
 import TaxPayers.*;
+
 import javax.swing.*;
 
 import java.awt.Font;
@@ -45,8 +46,9 @@ public class Login{
 	            	System.out.println("User " + username + " logged in");
 	            	frame.dispose();
 	            	JOptionPane.showMessageDialog(frame, "Logged In");
-	    			TaxPayerDetails newuser = new TaxPayerDetails();
+	            	TaxPayerDetails newuser = new TaxPayerDetails();
 	    			newuser.main(null);
+	    			newuser.setUser(username);
 	            }
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
