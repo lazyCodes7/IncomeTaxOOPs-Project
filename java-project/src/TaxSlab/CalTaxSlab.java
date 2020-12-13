@@ -1,4 +1,6 @@
 package TaxSlab;
+import TaxPayers.*;
+import project.Login;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -41,15 +43,43 @@ public class CalTaxSlab {
 		ActionListener checkTaxSlabAmt  = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			slab = income - investments;
+    			if(slab<250000) {
+        			JOptionPane.showMessageDialog(frame, "Tax Rate is "+ "NIL");
+        			
+
+    			}
+    			else if(slab<250000 && slab>500000) {
+        			JOptionPane.showMessageDialog(frame, "You have to pay"+ "10% tax");
+
+    			}
+    			else if(slab>500000 && slab<1000000) {
+        			JOptionPane.showMessageDialog(frame, "You have to pay"+ "20% tax");
+
+    			}
+    			else if(slab>1000000) {
+        			JOptionPane.showMessageDialog(frame, "You have to pay"+ "30% tax");
+
+    			}
     			JOptionPane.showMessageDialog(frame, "Tax Slab is "+ slab);
             }
     		
     	};
     	ActionListener goBack = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    			JOptionPane.showMessageDialog(frame, "Success");
+    			TaxPayerDetails home = new TaxPayerDetails();
+    			home.main(null);
+    			frame.dispose();
+    			
     		}
     	};
+    	ActionListener logoutListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new Login();
+				Login.main(null);
+			}
+			
+		};
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		JLabel l = new JLabel("Tax Slab Details");
@@ -57,10 +87,12 @@ public class CalTaxSlab {
 		String labelText = l.getText();
 		JLabel TotalIncome = new JLabel("Total Income");
 		JLabel TotalInvestment = new JLabel("Investments");
-		JLabel totalIncomeTF = new JLabel("Your Income");
-		JLabel totalInvestmentTF = new JLabel("Your Investments");
+		JLabel totalIncomeTF = new JLabel(Double.toString(income));
+		JLabel totalInvestmentTF = new JLabel(Double.toString(investments));
 		JButton button1 = new JButton("Check Tax Slab Amount");
 		JButton button2 = new JButton("Go back");
+		JButton button3 = new JButton("Logout");
+
 		CalTaxSlabLayout(){
 			frame.setTitle("Income Tax Management Corp");
 			frame.add(panel);
@@ -77,10 +109,10 @@ public class CalTaxSlab {
 			
 
 			
-			button1.setBounds(150,350,200,25);
+			button1.setBounds(50,350,200,25);
 			
-			button2.setBounds(450, 350, 150, 25);
-			
+			button2.setBounds(300, 350, 150, 25);
+			button3.setBounds(500,350,150,25);
 			panel.add(l);
 			panel.add(TotalIncome);
 			panel.add(TotalInvestment);
@@ -89,8 +121,11 @@ public class CalTaxSlab {
 			panel.add(totalInvestmentTF);
 			panel.add(button1);
 			panel.add(button2);
+			panel.add(button3);
 			button2.addActionListener(goBack);
 			button1.addActionListener(checkTaxSlabAmt);
+			button3.addActionListener(logoutListener);
+
 			frame.setVisible(true);
 			frame.setSize(700,500);
 		}

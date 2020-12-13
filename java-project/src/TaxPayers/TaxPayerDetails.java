@@ -6,16 +6,11 @@ import java.sql.*;
 import javax.swing.*;
 
 public class TaxPayerDetails {
-	private static String username;
 	private static Connection c;
 	private static PreparedStatement stmt = null;
 
-	public void setUser(String username) {
-		username = username;
-	}
-	public String getUser() {
-		return username;
-	}
+	
+	
 	public static void saveCredentials(String legalname,String panno,String adhaar,String user_address,String phoneno) {
 		try {
 			Class.forName("org.postgresql.Driver");

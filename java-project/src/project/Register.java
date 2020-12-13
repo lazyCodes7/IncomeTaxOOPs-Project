@@ -22,6 +22,9 @@ public class Register {
 	static JLabel password = new JLabel("Password");
 	static JLabel enterPasswordAgain = new JLabel("Enter Password again");
 	static JTextField username = new JTextField(20);
+	static JLabel TaxOfficers = new JLabel("Enter Tax Officer ID");
+	static JTextField TaxOfficersTF = new JTextField(20);
+
 	
 	static JTextField password1 = new JTextField(20);
 	static JTextField password2 = new JTextField(20);
@@ -29,6 +32,33 @@ public class Register {
 	
 	static JButton button2 = new JButton("For TaxOfficers");
 	static JButton button3 = new JButton("Register");
+	public static void tryTaxOfficerLogin(String tax_officer,String password,String id) {
+		try {
+			Class.forName("org.postgresql.Driver");
+			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "spaces");
+		    String SQL = "INSERT INTO tax_officers "
+	                + "VALUES(?,?,?)";
+		    stmt = c.prepareStatement(SQL);
+		    stmt.setString(1, tax_officer);
+            stmt.setString(2, password);
+            stmt.setString(3, id);
+			System.out.println(SQL);
+		    stmt.executeUpdate();
+		      System.out.println("Inserted records into the table...");
+
+		    try{
+		         if(stmt!=null)
+		            c.close();
+		      }catch(SQLException se){
+		      }// do nothing
+
+		} catch (Exception err) {
+			err.printStackTrace();
+			System.err.println(err.getClass().getName() + ": " + err.getMessage());
+			System.exit(0);
+		}
+		
+	}
 	public static void tryConnections(String user, String password) {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -76,12 +106,18 @@ public class Register {
     	ActionListener taxOfficerListener = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			if(button2.getText()=="For TaxOfficers") {
-    				JLabel TaxOfficers = new JLabel("Enter Tax Officer ID");
-        			TaxOfficers.setBounds(200,300,200,25);
-        			JTextField TaxOfficersTF = new JTextField(20);
-        			TaxOfficersTF.setBounds(350, 300, 165, 25);
-        			panel.add(TaxOfficers);
-        			panel.add(TaxOfficersTF);
+    				String pass1 = password1.getText().toString();
+            		String pass2 = password2.getText().toString();
+        			
+        			if(pass1.contentEquals(pass2)) {
+        				tryTaxOfficerLogin(username.getText(),password1.getText(),TaxOfficersTF.getText());
+            			JOptionPane.showMessageDialog(frame, "Successfully Registered");
+            			
+            		}
+        			else {
+            			JOptionPane.showMessageDialog(frame, "Passwords Do Not Match");
+
+        			}
             	}
     		}
     	};
@@ -109,6 +145,10 @@ public class Register {
 		button1.setBounds(100,350,150,25);
 		button2.setBounds(300, 350, 150, 25);
 		button3.setBounds(500, 350, 150, 25);
+		TaxOfficers.setBounds(200,300,200,25);
+		TaxOfficersTF.setBounds(350, 300, 165, 25);
+		panel.add(TaxOfficers);
+		panel.add(TaxOfficersTF);
 		panel.add(l);
 		panel.add(label);
 		panel.add(password);
@@ -120,6 +160,7 @@ public class Register {
 		panel.add(button2);
 		panel.add(button3);
 		frame.setVisible(true);
+		
 		frame.setSize(700,500);
 		button3.addActionListener(registerButtonListener);
 		button2.addActionListener(taxOfficerListener);
